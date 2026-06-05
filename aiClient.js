@@ -3,7 +3,7 @@
  * No API keys are stored in the extension. Auth is via user license key.
  */
 
-const PROXY_URL = 'https://yesbot-proxy.up.railway.app';
+const PROXY_URL = 'https://yesbot.up.railway.app';
 
 const RATE_LIMIT = { maxPerMinute: 10, calls: [] };
 
