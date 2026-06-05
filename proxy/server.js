@@ -39,7 +39,10 @@ const PER_KEY_PER_MINUTE      = 20;
 // ---------------------------------------------------------------------------
 // License key store (file-backed so keys survive restarts)
 // ---------------------------------------------------------------------------
-const KEYS_FILE = path.join(__dirname, 'keys.json');
+// RAILWAY_VOLUME_MOUNT_PATH is set automatically when a volume is attached in Railway.
+// Falls back to local file for development.
+const DATA_DIR  = process.env.RAILWAY_VOLUME_MOUNT_PATH || __dirname;
+const KEYS_FILE = path.join(DATA_DIR, 'keys.json');
 
 function loadKeys() {
   try {
