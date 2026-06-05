@@ -2,14 +2,11 @@
 /**
  * Yesbot Build Script
  *
- * Injects the GitHub PAT from environment variable and creates a distributable ZIP.
+ * Copies extension files and creates a distributable ZIP.
+ * No secrets are injected — auth is handled via user license keys at runtime.
  *
  * Usage:
- *   GITHUB_TOKEN=your_pat node scripts/build.cjs
- *
- * Or in GitHub Actions:
- *   env:
- *     GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
+ *   node scripts/build.cjs
  */
 
 const fs = require('fs');
@@ -18,9 +15,7 @@ const { execSync } = require('child_process');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
-const AI_CLIENT_FILE = 'aiClient.js';
 
-// Files to include in the extension package
 const EXTENSION_FILES = [
   'manifest.json',
   'content.js',
@@ -36,11 +31,6 @@ function log(message) {
   console.log(`[Yesbot Build] ${message}`);
 }
 
-function error(message) {
-  console.error(`[Yesbot Build ERROR] ${message}`);
-  process.exit(1);
-}
-
 function cleanDist() {
   if (fs.existsSync(DIST_DIR)) {
     fs.rmSync(DIST_DIR, { recursive: true });
@@ -49,7 +39,7 @@ function cleanDist() {
   log('Cleaned dist directory');
 }
 
-function copyFile(src, dest) {
+function copyFile(src) {
   const srcPath = path.join(ROOT_DIR, src);
   const destPath = path.join(DIST_DIR, src);
 
@@ -63,60 +53,24 @@ function copyFile(src, dest) {
     fs.cpSync(srcPath, destPath, { recursive: true });
   } else {
     const destDir = path.dirname(destPath);
-    if (!fs.existsSync(destDir)) {
-      fs.mkdirSync(destDir, { recursive: true });
-    }
+    if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
     fs.copyFileSync(srcPath, destPath);
   }
   log(`Copied ${src}`);
-}
-
-function injectToken() {
-  const token = process.env.GITHUB_TOKEN;
-
-  if (!token) {
-    log('WARNING: GITHUB_TOKEN not set. AI features will be disabled.');
-    return;
-  }
-
-  const aiClientPath = path.join(DIST_DIR, AI_CLIENT_FILE);
-
-  if (!fs.existsSync(aiClientPath)) {
-    error(`${AI_CLIENT_FILE} not found in dist directory`);
-  }
-
-  let content = fs.readFileSync(aiClientPath, 'utf8');
-  // Escape special characters to prevent breaking JS string literals
-  const safeToken = token.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-  content = content.replace("'__GITHUB_TOKEN__'", `'${safeToken}'`);
-  fs.writeFileSync(aiClientPath, content);
-
-  log('Injected GitHub token into aiClient.js');
 }
 
 function createZip() {
   const zipName = 'yesbot.zip';
   const zipPath = path.join(DIST_DIR, zipName);
 
-  // Remove old zip if exists
-  if (fs.existsSync(zipPath)) {
-    fs.unlinkSync(zipPath);
-  }
+  if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);
 
-  // Create zip using system zip command
   try {
-    const filesToZip = EXTENSION_FILES.filter(f => {
-      const fullPath = path.join(DIST_DIR, f);
-      return fs.existsSync(fullPath);
-    }).join(' ');
-
-    execSync(`cd "${DIST_DIR}" && zip -r "${zipName}" ${filesToZip}`, {
-      stdio: 'inherit'
-    });
-
+    const filesToZip = EXTENSION_FILES.filter(f => fs.existsSync(path.join(DIST_DIR, f))).join(' ');
+    execSync(`cd "${DIST_DIR}" && zip -r "${zipName}" ${filesToZip}`, { stdio: 'inherit' });
     log(`Created ${zipName}`);
     return zipPath;
-  } catch (err) {
+  } catch {
     log('zip command not available, skipping ZIP creation');
     return null;
   }
@@ -124,32 +78,19 @@ function createZip() {
 
 function main() {
   log('Starting Yesbot build...');
-  log(`Root directory: ${ROOT_DIR}`);
-  log(`Dist directory: ${DIST_DIR}`);
 
-  // Step 1: Clean dist directory
   cleanDist();
 
-  // Step 2: Copy extension files
   log('Copying extension files...');
-  for (const file of EXTENSION_FILES) {
-    copyFile(file);
-  }
+  for (const file of EXTENSION_FILES) copyFile(file);
 
-  // Step 3: Inject GitHub token
-  log('Injecting GitHub token...');
-  injectToken();
-
-  // Step 4: Create ZIP for distribution
   log('Creating distribution ZIP...');
   const zipPath = createZip();
 
   log('');
   log('Build complete!');
   log(`Output directory: ${DIST_DIR}`);
-  if (zipPath) {
-    log(`ZIP package: ${zipPath}`);
-  }
+  if (zipPath) log(`ZIP package: ${zipPath}`);
   log('');
   log('To test locally:');
   log('  1. Go to chrome://extensions/');

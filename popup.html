@@ -73,22 +73,125 @@
         font-size: 12px;
         color: var(--syc-text-muted);
       }
+
+      /* License key screen */
+      #syc-license-screen {
+        display: none;
+      }
+      #syc-license-screen .syc-license-intro {
+        font-size: 13px;
+        color: var(--syc-text-muted);
+        margin: 0 0 14px;
+        line-height: 1.5;
+      }
+      #syc-license-screen .syc-license-intro a {
+        color: var(--syc-accent);
+        text-decoration: none;
+      }
+      .syc-key-input-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .syc-key-input-row input[type="text"] {
+        flex: 1;
+        border-radius: 999px;
+        border: 1px solid var(--syc-border);
+        padding: 7px 12px;
+        background: var(--syc-control-bg);
+        font-size: 12px;
+        color: var(--syc-text);
+        font-family: monospace;
+        min-width: 0;
+      }
+      .syc-key-input-row input[type="text"]:focus {
+        outline: none;
+        border-color: var(--syc-accent);
+      }
+      .syc-btn {
+        border-radius: 999px;
+        border: none;
+        padding: 7px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        background: var(--syc-accent);
+        color: #fff;
+        white-space: nowrap;
+      }
+      .syc-btn:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .syc-key-feedback {
+        font-size: 12px;
+        min-height: 16px;
+        padding: 0 4px;
+      }
+      .syc-key-feedback.error { color: #d0342c; }
+      .syc-key-feedback.success { color: #2a7a2a; }
+
+      /* Key status row in main screen */
+      .syc-key-status-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        font-size: 13px;
+        border-bottom: 1px solid var(--syc-border);
+      }
+      .syc-key-status-row span {
+        font-family: monospace;
+        font-size: 11px;
+        color: var(--syc-text-muted);
+      }
+      .syc-key-change {
+        font-size: 11px;
+        color: var(--syc-accent);
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        font-family: inherit;
+      }
     </style>
   </head>
   <body class="syc-theme" data-syc-theme="light">
     <div class="syc-popup-shell">
       <h1>Yesbot</h1>
       <p class="syc-subtitle">Sycophancy detector for AI chats</p>
-      <div class="syc-settings-row">
-        <label for="syc-enabled">Extension enabled</label>
-        <input type="checkbox" id="syc-enabled" />
+
+      <!-- License key entry screen -->
+      <div id="syc-license-screen">
+        <p class="syc-license-intro">
+          Enter your license key to enable AI scoring.<br>
+          Don't have one? <a href="https://yesbot.app" target="_blank">Get access →</a>
+        </p>
+        <div class="syc-key-input-row">
+          <input type="text" id="syc-key-input" placeholder="YESBOT-XXXX-XXXX-XXXX-XXXX" spellcheck="false" />
+          <button class="syc-btn" id="syc-key-submit">Activate</button>
+        </div>
+        <div class="syc-key-feedback" id="syc-key-feedback"></div>
       </div>
-      <div class="syc-settings-row">
-        <label for="syc-theme">Theme</label>
-        <select id="syc-theme"></select>
-      </div>
-      <div class="syc-status" id="syc-status">
-        Scores appear as pills below AI responses on supported sites.
+
+      <!-- Main settings screen -->
+      <div id="syc-main-screen">
+        <div class="syc-key-status-row">
+          <label>License key</label>
+          <span id="syc-key-display"></span>
+          <button class="syc-key-change" id="syc-key-change">Change</button>
+        </div>
+        <div class="syc-settings-row">
+          <label for="syc-enabled">Extension enabled</label>
+          <input type="checkbox" id="syc-enabled" />
+        </div>
+        <div class="syc-settings-row">
+          <label for="syc-theme">Theme</label>
+          <select id="syc-theme"></select>
+        </div>
+        <div class="syc-status" id="syc-status">
+          Scores appear as pills below AI responses on supported sites.
+        </div>
       </div>
     </div>
     <script src="energyConfig.js"></script>
