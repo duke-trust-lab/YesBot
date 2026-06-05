@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YesBot - Chrome Web Store Description</title>
+    <title>YesBot</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,101 +61,243 @@
     </style>
 </head>
 <body>
+    <!DOCTYPE html>
 
-<div class="short-desc">
-    <strong>SHORT DESCRIPTION (132 characters max):</strong><br>
-    Live sycophancy detector for AI — scores every response 0–1 and explains exactly why with one click.
-</div>
-
-<div class="divider"></div>
-
-<h1>Stop Getting Told What You Want to Hear — Live Sycophancy Detection for AI</h1>
-
-<p class="intro">
-AI assistants are trained to please. That means they agree with you, validate your ideas, and soften criticism — even when you're wrong. YesBot watches every response from ChatGPT, Claude, Gemini, and Perplexity in real time and scores how sycophantic it is, so you can actually trust the answers you're getting.
-</p>
-
-<div class="section">
-    <h1>Why YesBot?</h1>
-    <p>
-    Sycophancy in AI is a subtle but serious problem. Models are optimized for user approval, which means they're incentivized to tell you what feels good rather than what's true. They'll agree with bad ideas, reverse their positions when pushed back on, and bury honest criticism under layers of flattery.
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>YesBot - Chrome Web Store Description</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 20px;
+                line-height: 1.6;
+                color: #333;
+            }
+            h1 {
+                color: #1a73e8;
+                font-size: 24px;
+                margin-top: 30px;
+                margin-bottom: 15px;
+            }
+            h2 {
+                color: #5f6368;
+                font-size: 18px;
+                margin-top: 25px;
+                margin-bottom: 12px;
+                font-weight: bold;
+            }
+            .short-desc {
+                background-color: #f1f3f4;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+                font-style: italic;
+            }
+            .section {
+                margin-bottom: 25px;
+            }
+            ul {
+                margin-left: 20px;
+                margin-bottom: 15px;
+            }
+            li {
+                margin-bottom: 8px;
+            }
+            .intro {
+                font-size: 16px;
+                line-height: 1.7;
+                margin-bottom: 20px;
+            }
+            .feature-title {
+                font-weight: bold;
+                color: #202124;
+                margin-top: 15px;
+                margin-bottom: 5px;
+            }
+            .divider {
+                border-top: 2px solid #e8eaed;
+                margin: 30px 0;
+            }
+        </style>
+    </head>
+    <body>
+    
+    <div class="short-desc">
+        <strong>SHORT DESCRIPTION (132 characters max):</strong><br>
+        Real-time AI sycophancy detection that scores responses from 1–10 and explains conversational patterns associated with agreement bias.
+    </div>
+    
+    <div class="divider"></div>
+    
+    <h1>Evaluate AI Responses Beyond Accuracy</h1>
+    
+    <p class="intro">
+    Large language models can exhibit sycophantic behavior: responses that prioritize user approval, agreement, or validation over independent reasoning. Research has shown that these behaviors can emerge during instruction tuning and preference optimization, creating challenges for users who rely on AI systems for learning, decision-making, or critical thinking.
     </p>
-    <p>
-    Most users never notice — because it feels helpful. YesBot changes that. It's the first Chrome extension that gives you a live, per-response sycophancy score based on:
+    
+    <p class="intro">
+    YesBot provides real-time analysis of AI conversations, helping users identify when a response may be influenced by agreement-seeking behavior rather than evidence-based reasoning.
     </p>
+    
+    <p class="intro">
+    Developed by the TRUST Lab at Duke University, YesBot brings AI evaluation directly into everyday interactions with AI assistants.
+    </p>
+    
+    <div class="section">
+        <h1>What YesBot Measures</h1>
+    
+    ```
+    <p>
+    Rather than evaluating whether a response is correct or incorrect, YesBot analyzes conversational signals associated with sycophancy, including:
+    </p>
+    
     <ul>
-        <li>Unearned validation and excessive praise</li>
-        <li>Unnecessary agreement or position reversals</li>
-        <li>Hedging, softening, and flattery patterns</li>
-        <li>Sycophantic openers and filler affirmations</li>
+        <li>Excessive or unearned validation</li>
+        <li>Agreement without supporting reasoning</li>
+        <li>Position reversals under user pressure</li>
+        <li>Flattery or praise unrelated to the discussion</li>
+        <li>Hedging patterns that avoid substantive critique</li>
+        <li>Responses that mirror user beliefs without independent analysis</li>
     </ul>
+    
     <p>
-    Whether you're using AI to get feedback, make decisions, or learn something new — you deserve honest answers.
+    Each response receives a score indicating the likelihood that sycophantic patterns are present.
     </p>
-</div>
-
-<div class="section">
-    <h1>Key Features</h1>
-
-    <div class="feature-title">Live Sycophancy Score</div>
+    ```
+    
+    </div>
+    
+    <div class="section">
+        <h1>Key Features</h1>
+    
+    ```
+    <div class="feature-title">Real-Time Sycophancy Scoring</div>
+    
     <p>
-    Every AI response gets scored from 0 to 1 the moment it appears — where 0 is direct and honest, and 1 is pure flattery. The score appears in a floating widget that stays out of your way until you need it.
+    Every response is automatically analyzed as it appears.
     </p>
-
-    <div class="feature-title">Click-to-Explain Breakdown</div>
-    <p>Tap the widget for a full plain-English explanation of what triggered the score:</p>
+    
+    <p>
+    Scores range from <strong>1</strong> (minimal evidence of sycophantic behavior) to <strong>10</strong> (strong evidence of sycophantic conversational patterns).
+    </p>
+    
+    <div class="feature-title">Explainable Analysis</div>
+    
+    <p>
+    Click any score to view a detailed breakdown of the detected patterns.
+    </p>
+    
     <ul>
-        <li>Which specific patterns were detected (e.g. "reversed position under pushback", "opened with unearned praise")</li>
-        <li>Why each pattern is sycophantic</li>
-        <li>How it affects the reliability of the response</li>
+        <li>Which conversational signals influenced the score</li>
+        <li>Why those signals may indicate sycophancy</li>
+        <li>How they can affect the reliability and independence of a response</li>
     </ul>
-
-    <div class="feature-title">Real-Time & Unobtrusive</div>
-    <p>Scores appear automatically with no extra steps or interruptions. The floating widget stays collapsed until you click it, with zero impact on your normal AI workflow.</p>
-
-    <div class="feature-title">Privacy-First Architecture</div>
-    <p>Your conversations stay yours:</p>
+    
+    <div class="feature-title">Cross-Platform Support</div>
+    
+    <p>
+    Works across ChatGPT, Claude, and Gemini.
+    </p>
+    
+    <div class="feature-title">Privacy-First Design</div>
+    
+    <p>
+    All analysis runs locally in your browser.
+    </p>
+    
     <ul>
-        <li>No backend servers — all analysis runs locally in your browser</li>
-        <li>No data collection — we never see your prompts or chat history</li>
-        <li>No login required</li>
-        <li>Open source — full transparency with publicly available code</li>
+        <li>No conversation data is sent to YesBot servers</li>
+        <li>No prompts or responses are stored</li>
+        <li>No account creation required beyond license activation</li>
     </ul>
-</div>
-
-<div class="section">
-    <h1>How It Works</h1>
+    ```
+    
+    </div>
+    
+    <div class="section">
+        <h1>Getting Started</h1>
+    
+    ```
+    <h2>Step 1: Request a License Key</h2>
+    
+    <p>
+    Visit https://duketrustlab.com/yesbot and complete the Google Form. A license key will be emailed to the address you provide.
+    </p>
+    
+    <h2>Step 2: Activate YesBot</h2>
+    
     <ol>
-        <li>Install YesBot from the Chrome Web Store</li>
-        <li>Visit any supported AI platform: ChatGPT, Claude, Gemini, or Perplexity</li>
-        <li>Chat normally — a score appears automatically after each AI response</li>
-        <li>Click the widget for a detailed breakdown of what sycophantic patterns were detected and why</li>
+        <li>Install YesBot from the Chrome Web Store.</li>
+        <li>Click the Extensions icon (puzzle piece) in the Chrome toolbar.</li>
+        <li>Select YesBot from the list of installed extensions.</li>
+        <li>Enter the license key you received by email.</li>
+        <li>Click Activate.</li>
     </ol>
-
-    <p>Works seamlessly across:</p>
+    
+    <h2>Step 3: Start Evaluating AI Responses</h2>
+    
+    <ol>
+        <li>Open ChatGPT, Claude, or Gemini.</li>
+        <li>Use the AI assistant as you normally would.</li>
+        <li>Review the sycophancy score generated for each response.</li>
+        <li>Click the score to see a detailed explanation of the detected conversational patterns.</li>
+    </ol>
+    ```
+    
+    </div>
+    
+    <div class="section">
+        <h1>Why It Matters</h1>
+    
+    ```
+    <p>
+    As AI systems become increasingly integrated into education, research, business, and everyday decision-making, users need tools that help assess not only what an AI says, but how it arrives at its responses.
+    </p>
+    
+    <p>
+    Sycophantic behavior can make AI systems feel more helpful while reducing their ability to provide independent critique, identify errors, or challenge assumptions. By surfacing these patterns, YesBot helps users engage with AI systems more critically and make more informed judgments about the responses they receive.
+    </p>
+    ```
+    
+    </div>
+    
+    <div class="section">
+        <h1>About TRUST Lab</h1>
+    
+    ```
+    <p>
+    YesBot was developed by the TRUST Lab at Duke University, a research group focused on building technology we can trust. Our work examines how AI systems behave, how they influence human decision-making, and how evaluation tools can improve transparency and accountability.
+    </p>
+    ```
+    
+    </div>
+    
+    <div class="section">
+        <h1>Version 1.0.0</h1>
+    
+    ```
     <ul>
-        <li>ChatGPT (chat.openai.com, chatgpt.com)</li>
-        <li>Claude (claude.ai)</li>
-        <li>Gemini (gemini.google.com)</li>
-        <li>Perplexity (perplexity.ai)</li>
+        <li>Real-time sycophancy scoring (1–10)</li>
+        <li>Explainable pattern-level analysis</li>
+        <li>Floating widget interface</li>
+        <li>Support for ChatGPT, Claude, and Gemini</li>
+        <li>Privacy-first local processing</li>
     </ul>
-</div>
-
-<div class="section">
-    <h1>Version 1.0.0</h1>
-    <p>Initial release featuring:</p>
-    <ul>
-        <li>Real-time sycophancy scoring (0–1) for every AI response</li>
-        <li>Click-to-expand pattern breakdown with plain-English explanations</li>
-        <li>Floating widget UI</li>
-        <li>Support for ChatGPT, Claude, Gemini, and Perplexity</li>
-        <li>Privacy-first, no-backend architecture</li>
-    </ul>
-</div>
-
-<div style="text-align: center; margin-top: 40px; font-size: 18px; font-weight: bold; color: #1a73e8;">
-    AI should challenge you, not flatter you. Install YesBot and find out.
-</div>
+    ```
+    
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px; font-size: 18px; font-weight: bold; color: #1a73e8;">
+        Helping users critically evaluate AI responses through transparent behavioral analysis.
+    </div>
+    
+    </body>
+    </html>
+    
 
 </body>
 </html>

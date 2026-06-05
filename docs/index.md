@@ -1,13 +1,13 @@
-# Alba Documentation
+# YesBot Documentation
 
-Welcome to Alba's documentation site.
+Welcome to YesBot's documentation site.
 
 ## Privacy Policy
 
-View our [Privacy Policy](privacy.md) to learn about how Alba protects your privacy and handles data.
+View our [Privacy Policy](privacy.md) to learn about how YesBot protects your privacy and handles data.
 
-## About Alba
+## About YesBot
 
-Alba is a privacy-first Chrome extension that gives AI users a live view of the energy, carbon, and water cost of every prompt. 
+YesBot is a Chrome extension that gives AI users a live sycophancy score for every response from ChatGPT, Claude, and Gemini — scored 1–10 with a plain-English explanation of detected patterns.
 
-Visit our [GitHub Repository](https://github.com/lindsaygross/Alba) to learn more or contribute.
+Visit our [GitHub Repository](https://github.com/duke-trust-lab/YesBot) to learn more or contribute.

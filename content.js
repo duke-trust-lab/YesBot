@@ -28,7 +28,8 @@
         'div[data-message-author-role="model"]',
         'article div[class*="assistant"]',
         'main div[data-message-author-role="assistant"]'
-      ]
+      ],
+      userSelectors: ['[data-message-author-role="user"]']
     },
     {
       id: 'claude',
@@ -36,9 +37,11 @@
       promptSelectors: ['textarea', 'div[contenteditable="true"][data-tracker="chat-input"]'],
       sendButtonSelectors: ['button[type="submit"]', 'button[aria-label*="Send"]'],
       assistantSelectors: [
+        'div.font-claude-response',
         'main div[class*="assistant"]',
         'section div[data-testid="assistant-response"]'
-      ]
+      ],
+      userSelectors: ['[data-testid="user-message"]', 'div.font-user-message', '[class*="human-turn"]']
     },
     {
       id: 'gemini',
@@ -52,10 +55,12 @@
       ],
       sendButtonSelectors: ['button[aria-label*="Send"]'],
       assistantSelectors: [
+        'model-response',
         'chat-message[message-type="model"]',
         'div[data-message-author-role="model"]',
         'message-content[data-message-type="model"]'
-      ]
+      ],
+      userSelectors: ['user-query-content', 'user-query', 'div[class*="user-query"]']
     },
     {
       id: 'perplexity',
@@ -93,8 +98,12 @@
   init();
 
   function getLastUserMessage() {
-    const msgs = document.querySelectorAll('[data-message-author-role="user"]');
-    return msgs.length ? msgs[msgs.length - 1].innerText : null;
+    const selectors = state.site.userSelectors || ['[data-message-author-role="user"]'];
+    for (const selector of selectors) {
+      const msgs = document.querySelectorAll(selector);
+      if (msgs.length) return msgs[msgs.length - 1].innerText;
+    }
+    return null;
   }
 
   function init() {
@@ -111,6 +120,7 @@
   async function runSycophancyCheck(assistantEl) {
     const userMsg = getLastUserMessage();
     const aiMsg = assistantEl.innerText;
+    console.log('[Yesbot] runSycophancyCheck userMsg:', userMsg?.slice(0, 50), 'aiMsg:', aiMsg?.slice(0, 50));
     if (!userMsg || !aiMsg) return;
 
     const pill = document.createElement('div');
@@ -207,9 +217,7 @@
           if (!(node instanceof HTMLElement)) return;
           processPotentialAssistantNode(node);
           node.querySelectorAll?.('*').forEach((child) => {
-            if (child instanceof HTMLElement) {
-              processPotentialAssistantNode(child);
-            }
+            if (child instanceof HTMLElement) processPotentialAssistantNode(child);
           });
         });
       });
@@ -227,19 +235,32 @@
   }
 
   function processPotentialAssistantNode(node) {
-    if (!state.site.assistantSelectors.some((selector) => node.matches(selector))) {
-      return;
-    }
-    setTimeout(() => processAssistantMessage(node), SYC_CONFIG.responseDelayMs);
+    const matched = state.site.assistantSelectors.find((selector) => {
+      try { return node.matches(selector); } catch { return false; }
+    });
+    if (!matched) return;
+    scheduleCheck(node, 0);
+  }
+
+  // Retry up to 10 times (every 1s for 10s) waiting for streaming to finish
+  function scheduleCheck(node, attempt) {
+    const delays = [500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 10000];
+    if (attempt >= delays.length) return;
+    setTimeout(() => {
+      if (node.dataset.sycLabeled === 'true') return; // already scored
+      const text = (node.innerText || '').trim();
+      if (text.length >= SYC_CONFIG.minChars) {
+        processAssistantMessage(node);
+      } else {
+        scheduleCheck(node, attempt + 1);
+      }
+    }, delays[attempt]);
   }
 
   function processAssistantMessage(element) {
     if (!element || element.dataset.sycLabeled) return;
     const text = element.innerText || '';
-    if (text.trim().length < SYC_CONFIG.minChars) {
-      element.dataset.sycLabeled = 'skip';
-      return;
-    }
+    if (text.trim().length < SYC_CONFIG.minChars) return;
     if (!checkedMessages.has(element)) {
       checkedMessages.add(element);
       runSycophancyCheck(element);
