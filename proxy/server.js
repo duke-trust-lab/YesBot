@@ -7,10 +7,21 @@ const path = require('path');
 const app = express();
 app.use(express.json({ limit: '16kb' }));
 
-// Only allow requests from Chrome extensions
+const ALLOWED_ORIGINS = new Set([
+  'https://chat.openai.com',
+  'https://chatgpt.com',
+  'https://claude.ai',
+  'https://gemini.google.com',
+  'https://perplexity.ai',
+  'https://www.perplexity.ai',
+]);
+
+// Allow chrome-extension origins (popup) and the supported AI chat sites (content scripts)
 app.use(cors({
   origin: (origin, cb) => {
-    if (!origin || origin.startsWith('chrome-extension://')) return cb(null, true);
+    if (!origin || origin.startsWith('chrome-extension://') || ALLOWED_ORIGINS.has(origin)) {
+      return cb(null, true);
+    }
     cb(new Error('Not allowed'));
   }
 }));
