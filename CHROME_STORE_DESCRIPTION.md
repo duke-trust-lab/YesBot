@@ -1,74 +1,117 @@
-# YesBot - Chrome Web Store Listing
+# YesBot
 
-## Short Description (132 characters max)
-Live sycophancy detector for AI — scores every response 0–1 and explains exactly why with one click.
+## Short Description
+
+Real-time AI sycophancy detection that scores responses from 1–10 and explains conversational patterns associated with agreement bias.
 
 ## Detailed Description
 
-### Stop Getting Told What You Want to Hear — Live Sycophancy Detection for AI
+### Evaluate AI Responses Beyond Accuracy
 
-AI assistants are trained to please. That means they agree with you, validate your ideas, and soften criticism — even when you're wrong. Sycophancy Judge watches every response from ChatGPT, Claude, Gemini, and Perplexity in real time and scores how sycophantic it is, so you can actually trust the answers you're getting.
+Large language models can exhibit sycophantic behavior: responses that prioritize user approval, agreement, or validation over independent reasoning. Research has shown that these behaviors can emerge during instruction tuning and preference optimization, creating challenges for users who rely on AI systems for learning, decision-making, or critical thinking.
 
-### 🧠 Why YesBot?
+YesBot provides real-time analysis of AI conversations, helping users identify when a response may be influenced by agreement-seeking behavior rather than evidence-based reasoning.
 
-Sycophancy in AI is a subtle but serious problem. Models are optimized for user approval, which means they're incentivized to tell you what feels good rather than what's true. They'll agree with bad ideas, reverse their positions when pushed back on, and bury honest criticism under layers of flattery.
-
-Most users never notice — because it feels helpful. YesBot changes that. It's the first Chrome extension that gives you a live, per-response sycophancy score based on:
-- Unearned validation and excessive praise
-- Unnecessary agreement or position reversals
-- Hedging, softening, and flattery patterns
-- Sycophantic openers and filler affirmations
+Developed by researchers at the TRUST Lab at Duke University, YesBot brings AI evaluation directly into everyday interactions with AI assistants.
 
 ---
 
-### ✨ Key Features
+## What YesBot Measures
 
-#### 🎯 Live Sycophancy Score
-Every AI response gets scored from **0 to 1** the moment it appears:
-- **0** — direct, honest, and appropriately critical
-- **1** — pure flattery with little genuine substance
+Rather than evaluating whether a response is correct or incorrect, YesBot analyzes conversational signals associated with sycophancy, including:
 
-The score appears in a floating widget that stays out of your way until you need it.
+* Excessive or unearned validation
+* Agreement without supporting reasoning
+* Position reversals under user pressure
+* Flattery or praise unrelated to the discussion
+* Hedging patterns that avoid substantive critique
+* Responses that mirror user beliefs without independent analysis
 
-#### 🔍 Click-to-Explain Breakdown
-Tap the widget for a full plain-English explanation of what triggered the score:
-- Which specific patterns were detected (e.g. "reversed position under pushback", "opened with unearned praise")
-- Why each pattern is sycophantic
-- How it affects the reliability of the response
-
-#### ⚡ Real-Time & Unobtrusive
-- Scores appear automatically — no extra steps, no interruptions
-- Floating widget stays collapsed until you click it
-- Zero impact on your normal AI workflow
-
-#### 🔒 Privacy-First Architecture
-Your conversations stay yours:
-- **No backend servers** — all analysis runs locally in your browser
-- **No data collection** — we never see your prompts or chat history
-- **No login required**
-- **Open source** — full transparency with publicly available code
+Each response receives a score indicating the likelihood that sycophantic patterns are present.
 
 ---
 
-### 🚀 How It Works
+## Key Features
 
-1. **Install YesBot** from the Chrome Web Store
-2. **Visit any supported AI platform**: ChatGPT, Claude, Gemini, or Perplexity
-3. **Chat normally** — a score appears automatically after each AI response
-4. **Click the widget** for a detailed breakdown of what sycophantic patterns were detected and why
+### Real-Time Sycophancy Scoring
 
-Works seamlessly across:
-- ✅ ChatGPT (chat.openai.com, chatgpt.com)
-- ✅ Claude (claude.ai)
-- ✅ Gemini (gemini.google.com)
-- ✅ Perplexity (perplexity.ai)
+Every response is automatically analyzed as it appears.
+
+Scores range from:
+
+* **1** — minimal evidence of sycophantic behavior
+* **10** — strong evidence of sycophantic conversational patterns
+
+The score is displayed in a lightweight interface designed to integrate seamlessly into existing workflows.
+
+### Explainable Analysis
+
+Click any score to view a detailed breakdown of the detected patterns.
+
+YesBot explains:
+
+* Which conversational signals influenced the score
+* Why those signals may indicate sycophancy
+* How they can affect the reliability and independence of a response
+
+### Cross-Platform Support
+
+Works across major AI platforms, including:
+
+* ChatGPT
+* Claude
+* Gemini
+
+### Privacy-First Design
+
+All analysis runs locally in your browser.
+
+* No conversation data is sent to YesBot servers
+* No prompts or responses are stored
+* No account creation required beyond license activation
 
 ---
 
-### Support & Documentation
+## Getting Started
 
-- **GitHub**: [github.com/your-repo-here](#)
-- **Issue Tracker**: Report bugs or request features via GitHub Issues
-- **License**: ISC Open Source License
+### Step 1: Request a License Key
+
+Complete the Google Form provided on the YesBot website (https://duketrustlab.com/yesbot). After submission, an access key will be emailed to the address you provide.
+
+### Step 2: Activate YesBot
+
+After installing the extension:
+
+1. Click the **Extensions** icon (puzzle piece) in the Chrome toolbar.
+2. Select **YesBot** from the list of installed extensions.
+3. Enter the access key you received by email.
+4. Click **Activate**.
+
+### Step 3: Start Evaluating AI Responses
+
+1. Open ChatGPT, Claude, or Gemini.
+2. Use the AI assistant as you normally would.
+3. Review the sycophancy score generated for each response.
+4. Click the score to see a detailed explanation of the detected conversational patterns.
 
 ---
+
+## Why It Matters
+
+As AI systems become increasingly integrated into education, research, business, and everyday decision-making, users need tools that help assess not only what an AI says, but how it arrives at its responses.
+
+Sycophantic behavior can make AI systems feel more helpful while reducing their ability to provide independent critique, identify errors, or challenge assumptions. By surfacing these patterns, YesBot helps users engage with AI systems more critically and make more informed judgments about the responses they receive.
+
+---
+
+## About TRUST Lab
+
+YesBot was developed by the [TRUST Lab](https://duketrustlab.com) at Duke University, a research group focused on building technology we can trust. Our work examines how AI systems behave, how they influence human decision-making, and how evaluation tools can improve transparency and accountability.
+
+**Lead Developer:** Ella Jorgensen
+
+**Other Contributors:** Dr. Brinnae Bent, Catie Barry, Rishika Randev, Jenny Chen, Jiechen Li  
+
+## Support
+
+Source code, documentation, and issue tracking are available through the project repository.
