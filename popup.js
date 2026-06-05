@@ -80,7 +80,7 @@
     setFeedback('Validating…', '');
 
     try {
-      const response = await fetch('https://yesbot-proxy.up.railway.app/judge', {
+      const response = await fetch('https://yesbot.up.railway.app/judge', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
