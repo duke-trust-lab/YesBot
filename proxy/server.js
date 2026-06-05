@@ -127,10 +127,9 @@ function adminAuth(req, res, next) {
 // ---------------------------------------------------------------------------
 
 // POST /admin/keys — create a new key
-// Body (optional): { label: "user@example.com" }
 app.post('/admin/keys', adminAuth, (req, res) => {
   const key = generateKey();
-  licenseKeys[key] = { createdAt: new Date().toISOString(), label: req.body.label || '', revoked: false };
+  licenseKeys[key] = { createdAt: new Date().toISOString(), revoked: false };
   saveKeys(licenseKeys);
   res.json({ key });
 });
